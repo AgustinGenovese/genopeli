@@ -150,4 +150,8 @@
   .pagina {
     padding-top: 4.8rem; /* Quita margen superior exclusivo en celulares */
   }
+
+  .subtitulo {
+    text-align: justify;
+  }
 }
