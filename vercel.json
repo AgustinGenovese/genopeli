@@ -19,15 +19,15 @@
       "dest": "/backend/src/main.ts"
     },
     {
-      "src": "/api/(.*)",
-      "dest": "/backend/src/main.ts"
+      "src": "^/(.*\\.(?:js|css|json|ico|png|jpg|jpeg|svg|woff2|woff|ttf|eot|txt|webmanifest))$",
+      "dest": "/frontend/$1"
+    },
+    {
+      "src": "^/assets/(.*)$",
+      "dest": "/frontend/assets/$1"
     },
     {
       "handle": "filesystem"
-    },
-    {
-      "src": "/(.*)\\.(js|css|ico|png|jpg|jpeg|svg|woff2|woff|ttf|eot)",
-      "dest": "/frontend/$1.$2"
     },
     {
       "src": "/(.*)",
