@@ -14,6 +14,17 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Efecto vidrio premium */
 }
 
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.logo-icon {
+  margin-top: 2px;
+  filter: drop-shadow(0 2px 4px rgba(108, 99, 255, 0.4));
+}
+
 .pagina {
   min-height: 100vh;
   padding: 5.6rem 1rem 2rem; /* Mayor que 5.2, menor que 6 */
