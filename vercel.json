@@ -9,26 +9,29 @@
       "src": "frontend/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "dist/frontend/browser"
+        "distDir": "dist/frontend"
       }
     }
   ],
-  "rewrites": [
+  "routes": [
     {
-      "source": "/search(.*)",
-      "destination": "backend/src/main.ts"
+      "src": "/search(.*)",
+      "dest": "/backend/src/main.ts"
     },
     {
-      "source": "/api/(.*)",
-      "destination": "backend/src/main.ts"
+      "src": "/api/(.*)",
+      "dest": "/backend/src/main.ts"
     },
     {
-      "source": "/(.*)",
-      "destination": "/$1"
+      "handle": "filesystem"
     },
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "src": "/(.*)\\.(js|css|ico|png|jpg|jpeg|svg|woff2|woff|ttf|eot)",
+      "dest": "/frontend/$1.$2"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/index.html"
     }
   ]
 }
