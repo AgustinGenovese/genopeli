@@ -154,4 +154,8 @@
   .subtitulo {
     text-align: left;
   }
+
+  .logo {
+    font-size: 1.45rem; /* Ajustarlo moderadamente para no ser tan agresivo en celular */
+  }
 }
