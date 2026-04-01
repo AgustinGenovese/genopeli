@@ -15,7 +15,7 @@
   ],
   "routes": [
     {
-      "src": "/search(.*)",
+      "src": "/api/(.*)",
       "dest": "/backend/src/main.ts"
     },
     {
