@@ -10,7 +10,7 @@ export class SearchService {
   constructor(
     private readonly tmdb: TmdbService,
     @Inject(CACHE_MANAGER) private readonly cache: Cache,
-  ) {}
+  ) { }
 
   async search(query: string, type: string, provider: number, pageNum: number = 1) {
     const cacheKey = `${query}-${type}-${provider}-${pageNum}`;
@@ -56,7 +56,7 @@ export class SearchService {
       );
 
       const encontradosEnEsteBloque = checkDisponibilidad.filter((r) => r !== null);
-      
+
       // Evitamos duplicados por ID
       encontradosEnEsteBloque.forEach(nuevo => {
         if (!todosFiltrados.some(f => f.id === nuevo.id)) {
@@ -65,7 +65,7 @@ export class SearchService {
       });
 
       currentTmdbPage += 5;
-      
+
       // Si no hay más resultados en TMDB (la respuesta fue vacía), rompemos el bucle
       if (resultsRaw.length === 0) break;
     }
