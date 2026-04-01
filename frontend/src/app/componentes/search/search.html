@@ -1,6 +1,9 @@
+<nav class="navbar">
+  <h1 class="logo">🎬 PeliAR</h1>
+</nav>
+
 <div class="pagina">
   <header class="encabezado">
-    <h1 class="logo">🎬 PeliAR</h1>
     <p class="subtitulo">Encontrá dónde ver tus películas y series en Argentina</p>
   </header>
 
@@ -13,18 +16,22 @@
       name="query"
     />
 
-    <select class="selector" [(ngModel)]="type" name="type">
-      <option value="movie">Solo Películas</option>
-      <option value="tv">Solo Series</option>
-    </select>
+    <div class="fila-selects">
+      <select class="selector" [(ngModel)]="type" name="type">
+        <option value="movie">Películas</option>
+        <option value="tv">Series</option>
+      </select>
 
-    <select class="selector" [(ngModel)]="provider" name="provider">
-      @for (p of plataformas; track p.id) {
-        <option [value]="p.id">{{ p.nombre }}</option>
-      }
-    </select>
+      <select class="selector" [(ngModel)]="provider" name="provider">
+        @for (p of plataformas; track p.id) {
+          <option [value]="p.id">{{ p.nombre }}</option>
+        }
+      </select>
+    </div>
 
-    <button class="btn-buscar" type="submit">Buscar</button>
+    <div class="fila-boton">
+      <button class="btn-buscar" type="submit">Buscar</button>
+    </div>
   </form>
 
   @if (cargando()) {

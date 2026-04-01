@@ -21,3 +21,8 @@ export default async (req: any, res: any) => {
   const instance = app.getHttpAdapter().getInstance();
   instance(req, res);
 };
+
+// PARA DESARROLLO LOCAL
+if (process.env.NODE_ENV !== 'production') {
+  bootstrap();
+}

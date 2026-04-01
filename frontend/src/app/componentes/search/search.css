@@ -1,6 +1,22 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+  background-color: rgba(18, 18, 31, 0.85); /* Coincide con tu tema oscuro, semi-transparente */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* Para celulares Apple */
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Efecto vidrio premium */
+}
+
 .pagina {
   min-height: 100vh;
-  padding: 2rem 1rem;
+  padding: 5.6rem 1rem 2rem; /* Mayor que 5.2, menor que 6 */
   max-width: 900px;
   margin: 0 auto;
 }
@@ -11,9 +27,10 @@
 }
 
 .logo {
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   color: #fff;
   margin: 0;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Efecto de luz por el fondo borroso */
 }
 
 .subtitulo {
@@ -24,28 +41,42 @@
 
 .formulario {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
+  flex-direction: column;
+  gap: 0.8rem;
   margin-bottom: 2rem;
 }
 
 .input-busqueda {
-  flex: 1 1 200px;
+  width: 100%;
   padding: 0.7rem 1rem;
   border-radius: 8px;
   border: none;
   background: #1e1e2e;
   color: #fff;
   font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.fila-selects {
+  display: flex;
+  gap: 0.8rem;
+  width: 100%;
 }
 
 .selector {
+  flex: 1;
   padding: 0.7rem 0.8rem;
   border-radius: 8px;
   border: none;
   background: #1e1e2e;
   color: #fff;
   font-size: 0.9rem;
+}
+
+.fila-boton {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.2rem;
 }
 
 .btn-buscar {
