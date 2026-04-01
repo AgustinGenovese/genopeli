@@ -13,21 +13,22 @@
       }
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/search(.*)",
-      "dest": "backend/src/main.ts"
+      "source": "/search(.*)",
+      "destination": "backend/src/main.ts"
     },
     {
-      "src": "/api/(.*)",
-      "dest": "backend/src/main.ts"
+      "source": "/api/(.*)",
+      "destination": "backend/src/main.ts"
     },
     {
-      "handle": "filesystem"
+      "source": "/(.*)",
+      "destination": "/$1"
     },
     {
-      "src": "/(.*)",
-      "dest": "frontend/index.html"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
