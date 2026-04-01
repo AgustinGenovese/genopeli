@@ -6,7 +6,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem 0;
+  padding: 0.8rem 0;
   background-color: rgba(30, 30, 46, 0.85); /* Ligeramente más claro, haciendo juego con los inputs */
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px); /* Para celulares Apple */
@@ -27,7 +27,7 @@
 
 .pagina {
   min-height: 100vh;
-  padding: 5.6rem 1rem 2rem; /* Mayor que 5.2, menor que 6 */
+  padding: 4.8rem 1rem 2rem; /* Reducido para acercar el contenido al navbar */
   max-width: 900px;
   margin: 0 auto;
 }
@@ -144,11 +144,11 @@
 @media (max-width: 768px) {
   .navbar {
     justify-content: flex-start;
-    padding: 0.7rem 1rem; /* Menos espacio vertical, y padding lateral para que no toque el borde izquierdo */
+    padding: 0.5rem 1rem; /* Muy poco espacio vertical para afinar la barra en celulares */
   }
 
   .pagina {
-    padding-top: 4.8rem; /* Quita margen superior exclusivo en celulares */
+    padding-top: 4.0rem; /* Quita bastante margen superior para acercar el texto al navbar */
   }
 
   .subtitulo {
