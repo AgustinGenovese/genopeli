@@ -14,7 +14,7 @@ export class Search {
   private readonly searchService = inject(SearchService);
 
   query = signal('');
-  type = signal('all');
+  type = signal('movie');
   provider = signal(0);
   resultados = signal<Resultado[]>([]);
   cargando = signal(false);

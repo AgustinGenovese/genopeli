@@ -50,10 +50,20 @@ export class SearchService {
       // Si TMDB dice que es relevante para tu búsqueda, lo procesamos.
       const matcheanTexto = resultsWithTypes;
 
-      // Consultamos disponibilidad en Argentina (esta es la parte lenta/profunda)
-      const checkDisponibilidad = await Promise.all(
-        matcheanTexto.map((item) => this.buildResult(item, provider)),
-      );
+      // Consultamos disponibilidad en Argentina en lotes para no exceder límite de TMDB
+      const checkDisponibilidad = [];
+      const BATCH_SIZE = 20;
+      for (let i = 0; i < matcheanTexto.length; i += BATCH_SIZE) {
+        const batch = matcheanTexto.slice(i, i + BATCH_SIZE);
+        const batchResults = await Promise.all(
+          batch.map((item) => this.buildResult(item, provider))
+        );
+        checkDisponibilidad.push(...batchResults);
+        
+        if (i + BATCH_SIZE < matcheanTexto.length) {
+          await new Promise((resolve) => setTimeout(resolve, 250));
+        }
+      }
 
       const encontradosEnEsteBloque = checkDisponibilidad.filter((r) => r !== null);
 
