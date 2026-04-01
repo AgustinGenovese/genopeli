@@ -1,0 +1,48 @@
+<div class="pagina">
+  <header class="encabezado">
+    <h1 class="logo">🎬 PeliAR</h1>
+    <p class="subtitulo">Encontrá dónde ver tus películas y series en Argentina</p>
+  </header>
+
+  <form class="formulario" (ngSubmit)="buscar()">
+    <input
+      class="input-busqueda"
+      type="text"
+      placeholder="Buscar película o serie..."
+      [(ngModel)]="query"
+      name="query"
+    />
+
+    <select class="selector" [(ngModel)]="type" name="type">
+      <option value="all">Películas y Series</option>
+      <option value="movie">Solo Películas</option>
+      <option value="tv">Solo Series</option>
+    </select>
+
+    <select class="selector" [(ngModel)]="provider" name="provider">
+      @for (p of plataformas; track p.id) {
+        <option [value]="p.id">{{ p.nombre }}</option>
+      }
+    </select>
+
+    <button class="btn-buscar" type="submit">Buscar</button>
+  </form>
+
+  @if (cargando()) {
+    <p class="mensaje">Buscando...</p>
+  } @else if (buscado() && resultados().length === 0) {
+    <p class="mensaje">No se encontraron resultados disponibles en Argentina.</p>
+  } @else {
+    <div class="grilla">
+      @for (r of resultados(); track r.id) {
+        <app-result-card [resultado]="r" />
+      }
+    </div>
+
+    @if (resultados().length > 0 && !cargando()) {
+      <div class="contenedor-mas">
+        <button class="btn-mas" (click)="cargarMas()">Investigar profundamente</button>
+      </div>
+    }
+  }
+</div>

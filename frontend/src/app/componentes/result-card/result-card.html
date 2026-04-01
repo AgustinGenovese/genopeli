@@ -1,0 +1,17 @@
+<div class="card">
+  @if (resultado().poster_url) {
+    <img [src]="resultado().poster_url" [alt]="resultado().titulo" class="poster" />
+  } @else {
+    <div class="poster sin-poster">Sin imagen</div>
+  }
+
+  <div class="info">
+    <span class="badge">{{ resultado().tipo === 'movie' ? 'Película' : 'Serie' }}</span>
+    <h3 class="titulo">{{ resultado().titulo }}</h3>
+    <div class="plataformas">
+      @for (p of resultado().plataformas; track p.nombre) {
+        <img [src]="p.logo" [alt]="p.nombre" [title]="p.nombre" class="logo-plataforma" />
+      }
+    </div>
+  </div>
+</div>

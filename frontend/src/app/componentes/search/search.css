@@ -1,0 +1,100 @@
+.pagina {
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.encabezado {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.logo {
+  font-size: 2.2rem;
+  color: #fff;
+  margin: 0;
+}
+
+.subtitulo {
+  color: #888;
+  margin: 0.4rem 0 0;
+  font-size: 0.95rem;
+}
+
+.formulario {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+}
+
+.input-busqueda {
+  flex: 1 1 200px;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  border: none;
+  background: #1e1e2e;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.selector {
+  padding: 0.7rem 0.8rem;
+  border-radius: 8px;
+  border: none;
+  background: #1e1e2e;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.btn-buscar {
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  border: none;
+  background: #6c63ff;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-buscar:hover {
+  background: #5a52d5;
+}
+
+.grilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;
+}
+
+.mensaje {
+  text-align: center;
+  color: #888;
+  margin-top: 3rem;
+}
+
+.contenedor-mas {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+  padding-bottom: 2rem;
+}
+
+.btn-mas {
+  background: transparent;
+  border: 1px solid #6c63ff;
+  color: #6c63ff;
+  padding: 0.8rem 2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.btn-mas:hover {
+  background: #6c63ff;
+  color: white;
+}
+
