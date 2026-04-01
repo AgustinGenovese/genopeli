@@ -140,3 +140,10 @@
   color: white;
 }
 
+
+@media (max-width: 768px) {
+  .navbar {
+    justify-content: flex-start;
+    padding: 0.7rem 1rem; /* Menos espacio vertical, y padding lateral para que no toque el borde izquierdo */
+  }
+}
