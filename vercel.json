@@ -7,7 +7,10 @@
     },
     {
       "src": "frontend/package.json",
-      "use": "@vercel/static-build"
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist/frontend/browser"
+      }
     }
   ],
   "routes": [
@@ -24,11 +27,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "frontend/dist/frontend/browser/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "frontend/dist/frontend/browser/index.html"
+      "dest": "frontend/index.html"
     }
   ]
 }
