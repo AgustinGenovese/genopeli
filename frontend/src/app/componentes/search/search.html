@@ -23,7 +23,7 @@
     <input
       class="input-busqueda"
       type="text"
-      placeholder="Buscar película o serie..."
+      placeholder="Buscar película o dejar vacío para mejores valoradas..."
       [(ngModel)]="query"
       name="query"
     />
@@ -41,6 +41,28 @@
       </select>
     </div>
 
+    <div class="fila-orden">
+      <label class="label-orden">Ordenar por:</label>
+      <div class="opciones-orden">
+        <button 
+          type="button" 
+          class="btn-orden" 
+          [class.activo]="sortBy() === 'relevance'"
+          (click)="sortBy.set('relevance')"
+        >
+          Relevancia
+        </button>
+        <button 
+          type="button" 
+          class="btn-orden" 
+          [class.activo]="sortBy() === 'rating'"
+          (click)="sortBy.set('rating')"
+        >
+          Mejor valoradas (IMDb/TMDB)
+        </button>
+      </div>
+    </div>
+
     <div class="fila-boton">
       <button class="btn-buscar" type="submit">Buscar</button>
     </div>
@@ -52,7 +74,7 @@
     <p class="mensaje">No se encontraron resultados disponibles en Argentina.</p>
   } @else {
     <div class="grilla">
-      @for (r of resultados(); track r.id) {
+      @for (r of resultadosOrdenados(); track r.id) {
         <app-result-card [resultado]="r" />
       }
     </div>

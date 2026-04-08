@@ -17,6 +17,21 @@ export class SearchService {
     const cached = await this.cache.get(cacheKey);
     if (cached) return cached;
 
+    if (!query) {
+      const resultsRaw = await this.tmdb.discover(type as 'movie' | 'tv', provider, pageNum);
+      const resultsWithTypes = resultsRaw.map((r) => ({
+        ...r,
+        _type: type as 'movie' | 'tv',
+      }));
+
+      const checkDisponibilidad = await Promise.all(
+        resultsWithTypes.map((item) => this.buildResult(item, provider))
+      );
+      const finalResults = checkDisponibilidad.filter((r) => r !== null);
+      await this.cache.set(cacheKey, finalResults);
+      return finalResults;
+    }
+
     let todosFiltrados: any[] = [];
     let currentTmdbPage = (pageNum - 1) * 5 + 1;
     const maxTmdbPage = pageNum * 25; // Límite de seguridad por cada clic de "Investigar"
@@ -102,6 +117,7 @@ export class SearchService {
       titulo: item.title ?? item.name,
       tipo: item._type,
       poster_url: item.poster_path ? `${IMAGE_BASE}/w342${item.poster_path}` : null,
+      ranking: item.vote_average,
       plataformas: flatrate.map((p) => ({
         nombre: p.provider_name,
         logo: `${IMAGE_BASE}/w92${p.logo_path}`,

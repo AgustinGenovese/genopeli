@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SearchService } from '../../services/search.service';
 import { ResultCard } from '../result-card/result-card';
@@ -17,9 +17,18 @@ export class Search {
   type = signal('movie');
   provider = signal(0);
   resultados = signal<Resultado[]>([]);
+  sortBy = signal<'relevance' | 'rating'>('relevance');
   cargando = signal(false);
   buscado = signal(false);
   pagina = signal(1);
+
+  resultadosOrdenados = computed(() => {
+    const list = [...this.resultados()];
+    if (this.sortBy() === 'rating') {
+      return list.sort((a, b) => b.ranking - a.ranking);
+    }
+    return list;
+  });
 
   readonly plataformas = [
     { id: 0,   nombre: 'Todas las plataformas' },
@@ -30,7 +39,6 @@ export class Search {
   ];
 
   buscar() {
-    if (!this.query().trim()) return;
     this.pagina.set(1);
     this.cargando.set(true);
     this.buscado.set(true);

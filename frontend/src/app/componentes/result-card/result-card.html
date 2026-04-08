@@ -6,7 +6,10 @@
   }
 
   <div class="info">
-    <span class="badge">{{ resultado().tipo === 'movie' ? 'Película' : 'Serie' }}</span>
+    <div class="meta">
+      <span class="badge">{{ resultado().tipo === 'movie' ? 'Película' : 'Serie' }}</span>
+      <span class="ranking">⭐ {{ resultado().ranking.toFixed(1) }}</span>
+    </div>
     <h3 class="titulo">{{ resultado().titulo }}</h3>
     <div class="plataformas">
       @for (p of resultado().plataformas; track p.nombre) {

@@ -33,13 +33,24 @@
   gap: 0.4rem;
 }
 
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .badge {
   font-size: 0.7rem;
   background: #6c63ff;
   color: white;
   padding: 2px 8px;
   border-radius: 20px;
-  align-self: flex-start;
+}
+
+.ranking {
+  font-size: 0.75rem;
+  color: #ffb900;
+  font-weight: 600;
 }
 
 .titulo {

@@ -8,5 +8,6 @@ export interface Resultado {
   titulo: string;
   tipo: 'movie' | 'tv';
   poster_url: string | null;
+  ranking: number;
   plataformas: Plataforma[];
 }

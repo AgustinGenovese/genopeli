@@ -36,4 +36,13 @@ export class TmdbService {
     const response = await lastValueFrom(this.http.get(url, { headers: this.headers }));
     return response.data.results?.AR ?? null;
   }
+
+  async discover(type: 'movie' | 'tv', providerId?: number, page: number = 1): Promise<any[]> {
+    let url = `${this.baseUrl}/discover/${type}?page=${page}&language=es-AR&watch_region=AR&sort_by=vote_average.desc&vote_count.gte=100`;
+    if (providerId && providerId !== 0) {
+      url += `&with_watch_providers=${providerId}`;
+    }
+    const response = await lastValueFrom(this.http.get(url, { headers: this.headers }));
+    return response.data.results ?? [];
+  }
 }
