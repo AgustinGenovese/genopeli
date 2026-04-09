@@ -23,7 +23,7 @@
     <input
       class="input-busqueda"
       type="text"
-      placeholder="Buscar película o dejar vacío para mejores valoradas..."
+      placeholder="Buscar película, serie o director..."
       [(ngModel)]="query"
       name="query"
     />
@@ -32,6 +32,7 @@
       <select class="selector" [(ngModel)]="type" name="type">
         <option value="movie">Películas</option>
         <option value="tv">Series</option>
+        <option value="director">Directores</option>
       </select>
 
       <select class="selector" [(ngModel)]="provider" name="provider">
@@ -68,21 +69,71 @@
     </div>
   </form>
 
-  @if (cargando()) {
+  @if (cargando() && resultados().length === 0) {
     <p class="mensaje">Buscando...</p>
-  } @else if (buscado() && resultados().length === 0) {
+  } @else if (buscado() && resultados().length === 0 && directorSearchResults().length === 0) {
     <p class="mensaje">No se encontraron resultados disponibles en Argentina.</p>
   } @else {
-    <div class="grilla">
-      @for (r of resultadosOrdenados(); track r.id) {
-        <app-result-card [resultado]="r" />
+    @if (type() === 'director' && directorSearchResults().length > 0) {
+      @for (director of directorSearchResults(); track director.person.id) {
+        <div class="director-seccion">
+          <h3 class="director-titulo">{{ director.person.name }}</h3>
+          @if (director.movies.length > 0) {
+            <p class="director-info">{{ director.movieCount }} películas dirigidas</p>
+            <div class="grilla">
+              @for (p of director.movies; track p.id) {
+                <div class="card-director" (click)="abrirPeliculaDirector(p)">
+                  @if (p.poster_url) {
+                    <img [src]="p.poster_url" [alt]="p.titulo" class="poster" loading="lazy" />
+                  } @else {
+                    <div class="poster sin-poster">Sin imagen</div>
+                  }
+                  <div class="info">
+                    <h4>{{ p.titulo }}</h4>
+                    @if (p.fecha) {
+                      <span class="fecha">{{ p.fecha | slice:0:4 }}</span>
+                    }
+                    <span class="ranking">⭐ {{ p.ranking.toFixed(1) }}</span>
+                  </div>
+                </div>
+              }
+            </div>
+          } @else {
+            <p class="mensaje">No tiene películas disponibles.</p>
+          }
+        </div>
       }
-    </div>
-
-    @if (resultados().length > 0 && !cargando()) {
-      <div class="contenedor-mas">
-        <button class="btn-mas" (click)="cargarMas()">Investigar profundamente</button>
+    } @else {
+      <div class="grilla">
+        @for (r of resultadosOrdenados(); track r.id) {
+          <app-result-card [resultado]="r" (clicked)="abrirModal($event)" />
+        }
       </div>
+
+      @if (cargando() && resultados().length > 0) {
+        <p class="mensaje-carga">Cargando más...</p>
+      }
+
+      <div #sentinel></div>
     }
   }
 </div>
+
+@if (mostrarModal()) {
+  <app-detalles-modal 
+    [detalle]="detalleSeleccionado()!" 
+    [videos]="videosSeleccionados()"
+    [tipo]="tipoSeleccionado()"
+    [credits]="credits()"
+    (cerrar)="cerrarModal()"
+    (directorClick)="abrirDirectorModal($event)"
+  />
+}
+
+@if (mostrarDirectorModal()) {
+  <app-director-modal 
+    [directorNombre]="directorNombre()"
+    [peliculas]="directorPeliculas()"
+    (cerrar)="cerrarDirectorModal()"
+  />
+}

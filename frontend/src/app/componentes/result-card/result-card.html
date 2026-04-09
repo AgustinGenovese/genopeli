@@ -1,6 +1,9 @@
-<div class="card">
+<div class="card" (click)="onClick()">
   @if (resultado().poster_url) {
-    <img [src]="resultado().poster_url" [alt]="resultado().titulo" class="poster" />
+    <img [src]="getPosterUrl()" 
+         [alt]="resultado().titulo" 
+         class="poster"
+         loading="lazy" />
   } @else {
     <div class="poster sin-poster">Sin imagen</div>
   }
@@ -12,8 +15,14 @@
     </div>
     <h3 class="titulo">{{ resultado().titulo }}</h3>
     <div class="plataformas">
-      @for (p of resultado().plataformas; track p.nombre) {
-        <img [src]="p.logo" [alt]="p.nombre" [title]="p.nombre" class="logo-plataforma" />
+      @for (p of resultado().plataformas; track p.provider_id) {
+        <a [href]="getStreamingUrl(p.provider_id, resultado().titulo, resultado().tipo)" 
+           target="_blank" 
+           rel="noopener" 
+           [title]="'Ver en ' + p.nombre"
+           (click)="$event.stopPropagation()">
+          <img [src]="p.logo" [alt]="p.nombre" class="logo-plataforma" />
+        </a>
       }
     </div>
   </div>

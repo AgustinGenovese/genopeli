@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
   transition: transform 0.2s;
+  cursor: pointer;
 }
 
 .card:hover {
@@ -15,6 +16,7 @@
   width: 100%;
   aspect-ratio: 2/3;
   object-fit: cover;
+  background: #2a2a3e;
 }
 
 .sin-poster {
@@ -72,4 +74,9 @@
   height: 28px;
   border-radius: 6px;
   object-fit: cover;
+  transition: transform 0.2s;
+}
+
+a:hover .logo-plataforma {
+  transform: scale(1.1);
 }

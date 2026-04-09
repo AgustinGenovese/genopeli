@@ -1,0 +1,32 @@
+<div class="overlay" (click)="cerrarEnFondo($event)">
+  <div class="modal">
+    <button class="cerrar" (click)="cerrarModal()">&times;</button>
+    
+    <div class="contenido">
+      <h2>Películas dirigidas por {{ directorNombre() }}</h2>
+      
+      @if (peliculas().length === 0) {
+        <p class="vacio">No se encontraron películas.</p>
+      } @else {
+        <div class="grilla">
+          @for (p of peliculas(); track p.id) {
+            <div class="card">
+              @if (p.poster_url) {
+                <img [src]="p.poster_url" [alt]="p.titulo" class="poster" loading="lazy" />
+              } @else {
+                <div class="poster sin-poster">Sin imagen</div>
+              }
+              <div class="info">
+                <h3>{{ p.titulo }}</h3>
+                @if (p.fecha) {
+                  <span class="fecha">{{ p.fecha | slice:0:4 }}</span>
+                }
+                <span class="ranking">⭐ {{ p.ranking.toFixed(1) }}</span>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>

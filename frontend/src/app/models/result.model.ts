@@ -1,6 +1,7 @@
 export interface Plataforma {
   nombre: string;
   logo: string;
+  provider_id?: number;
 }
 
 export interface Resultado {

@@ -45,4 +45,41 @@ export class TmdbService {
     const response = await lastValueFrom(this.http.get(url, { headers: this.headers }));
     return response.data.results ?? [];
   }
+
+  async getDetails(id: number, type: 'movie' | 'tv'): Promise<any> {
+    const url = `${this.baseUrl}/${type}/${id}?language=es-AR`;
+    const response = await lastValueFrom(this.http.get(url, { headers: this.headers }));
+    return response.data;
+  }
+
+  async getVideos(id: number, type: 'movie' | 'tv'): Promise<any[]> {
+    const url = `${this.baseUrl}/${type}/${id}/videos?language=es-AR`;
+    const response = await lastValueFrom(this.http.get(url, { headers: this.headers }));
+    const videos = response.data.results ?? [];
+    return videos.filter((v: any) => v.site === 'YouTube' && v.type === 'Trailer');
+  }
+
+  async getCredits(id: number, type: 'movie' | 'tv'): Promise<any> {
+    const url = `${this.baseUrl}/${type}/${id}/credits?language=es-AR`;
+    const response = await lastValueFrom(this.http.get(url, { headers: this.headers }));
+    return response.data;
+  }
+
+  async searchPerson(query: string): Promise<any[]> {
+    const url = `${this.baseUrl}/search/person?query=${encodeURIComponent(query)}&language=es-AR`;
+    const response = await lastValueFrom(this.http.get(url, { headers: this.headers }));
+    return response.data.results ?? [];
+  }
+
+  async getPersonMovieCredits(personId: number): Promise<any> {
+    const url = `${this.baseUrl}/person/${personId}/movie_credits?language=es-AR`;
+    const response = await lastValueFrom(this.http.get(url, { headers: this.headers }));
+    return response.data;
+  }
+
+  async getPersonTvCredits(personId: number): Promise<any> {
+    const url = `${this.baseUrl}/person/${personId}/tv_credits?language=es-AR`;
+    const response = await lastValueFrom(this.http.get(url, { headers: this.headers }));
+    return response.data;
+  }
 }

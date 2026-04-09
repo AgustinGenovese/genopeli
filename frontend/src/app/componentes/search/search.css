@@ -156,29 +156,115 @@
   margin-top: 3rem;
 }
 
-.contenedor-mas {
+.mensaje-carga {
+  text-align: center;
+  color: #666;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+}
+
+.paginador {
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
   margin-top: 3rem;
   padding-bottom: 2rem;
 }
 
-.btn-mas {
-  background: transparent;
+.btn-pagina {
+  background: #1e1e2e;
   border: 1px solid #6c63ff;
   color: #6c63ff;
-  padding: 0.8rem 2rem;
+  padding: 0.6rem 1.2rem;
   border-radius: 8px;
   cursor: pointer;
   font-size: 0.9rem;
   transition: all 0.2s;
 }
 
-.btn-mas:hover {
+.btn-pagina:hover:not(:disabled) {
   background: #6c63ff;
   color: white;
 }
 
+.btn-pagina:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pagina-actual {
+  color: #888;
+  font-size: 0.95rem;
+}
+
+
+.director-seccion {
+  margin-bottom: 2.5rem;
+}
+
+.director-titulo {
+  font-size: 1.3rem;
+  color: #fff;
+  margin: 0 0 5px;
+}
+
+.director-info {
+  color: #888;
+  font-size: 0.9rem;
+  margin: 0 0 15px;
+}
+
+.card-director {
+  background: #1e1e2e;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.card-director:hover {
+  transform: scale(1.03);
+}
+
+.card-director .poster {
+  width: 100%;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  background: #2a2a3e;
+}
+
+.card-director .sin-poster {
+  aspect-ratio: 2/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  font-size: 0.8rem;
+  background: #2a2a3e;
+}
+
+.card-director .info {
+  padding: 10px;
+}
+
+.card-director h4 {
+  margin: 0 0 5px;
+  font-size: 0.85rem;
+  color: #e0e0e0;
+  line-height: 1.2;
+}
+
+.card-director .fecha {
+  color: #888;
+  font-size: 0.8rem;
+  display: block;
+}
+
+.card-director .ranking {
+  color: #fbbf24;
+  font-size: 0.8rem;
+}
 
 @media (max-width: 768px) {
   .navbar {
